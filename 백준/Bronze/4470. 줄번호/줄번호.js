@@ -8,15 +8,4 @@ const input = require('fs')
 
 input.shift();
 
-console.log(
-  input
-    .map((v, i) => {
-      const info = v
-        .split('')
-        .filter((v) => v !== '\r')
-        .join('');
-
-      return `${i + 1}. ${info}`;
-    })
-    .join('\n')
-);
+console.log(input.map((v, i) => `${i + 1}. ${v}`).join('\n'));
