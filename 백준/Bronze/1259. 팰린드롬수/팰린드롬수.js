@@ -14,12 +14,6 @@ input.forEach((v) => {
     .filter((v) => v !== '\r')
     .map(Number);
 
-  if (v.length % 2 === 0) {
-    const half = v.splice(v.length / 2);
-    console.log(v.join(' ') === half.reverse().join(' ') ? 'yes' : 'no');
-  } else {
-    const half = v.splice(v.length / 2 + 1);
-    v.pop();
-    console.log(v.join(' ') === half.reverse().join(' ') ? 'yes' : 'no');
-  }
+  const copy = [...v];
+  console.log(v.join(' ') === copy.reverse().join(' ') ? 'yes' : 'no');
 });
