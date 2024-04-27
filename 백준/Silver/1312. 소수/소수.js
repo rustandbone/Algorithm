@@ -7,7 +7,7 @@ let answer = 0;
 
 for (i = 0; i < n; i++) {
   a = (a % b) * 10;
-  answer = a / b;
+  answer = Math.floor(a / b);
 }
 
-console.log(parseInt(answer));
+console.log(answer);
