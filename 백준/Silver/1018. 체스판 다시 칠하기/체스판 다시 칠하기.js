@@ -9,21 +9,21 @@ const chessBoard = input.slice(1).map((v) => v.trim());
 const white = 'WBWBWBWB';
 const black = 'BWBWBWBW';
 
-const arr = Array.from({ length: (n - 7) * (m - 7) }, () => []);
+let answer = Infinity;
 
 for (let i = 0; i <= n - 8; i++) {
+  let arr = [];
   for (let j = 0; j <= m - 8; j++) {
     for (let k = 0; k < 8; k++) {
-      arr[i * (m - 7) + j].push(chessBoard[i + k].slice(j, j + 8));
+      arr.push(chessBoard[i + k].slice(j, j + 8));
     }
+    const num = checkColor(arr);
+    num < answer ? (answer = num) : answer;
+    arr = [];
   }
 }
 
-const answer = arr.map((v) => {
-  return checkColor(v);
-});
-
-console.log(Math.min(...answer));
+console.log(answer);
 
 function checkColor(arr) {
   let count = [0, 0];
