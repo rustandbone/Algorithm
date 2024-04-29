@@ -10,11 +10,28 @@ const [p, k] = input;
 
 let answer = 'GOOD';
 
-for (let i = 2n; i < k; i++) {
-  if (p % i === 0n) {
+makePrime(Number(k)).some((v, i) => {
+  if (!v) return false;
+  if (p % BigInt(i) === 0n) {
     answer = `BAD ${Number(i)}`;
-    break;
+    return true;
   }
-}
+});
 
 console.log(answer);
+
+function makePrime(n) {
+  let primeCheck = new Array(n).fill(true);
+  primeCheck[0] = false;
+  primeCheck[1] = false;
+
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (primeCheck[i]) {
+      for (let j = i * i; j <= n; j += i) {
+        primeCheck[j] = false;
+      }
+    }
+  }
+
+  return primeCheck;
+}
