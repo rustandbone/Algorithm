@@ -1,25 +1,21 @@
 const filePath = process.platform === 'linux' ? 0 : './example.txt';
 
-const input = require('fs')
-  .readFileSync(filePath, 'utf-8')
-  .trim()
-  .split('\n')
-  .map((v) => v.trim());
+const input = require('fs').readFileSync(filePath, 'utf-8').trim().split('\n');
 
-const [songsNum, questionsNum] = input[0].split(' ').map(Number);
+const [songsNum] = input[0].split(' ').map(Number);
 
 const songs = {};
-
 const songsArr = input.slice(1, songsNum + 1);
 const questions = input.slice(songsNum + 1);
 
 songsArr.forEach((song) => {
-  const [, title, ...code] = song.split(' ');
+  const [, title, ...code] = song.trim().split(' ');
   songs[title] = code.slice(0, 3).join(' ');
 });
 
 questions.forEach((question) => {
   const titleList = [];
+  question = question.trim();
 
   Object.entries(songs).forEach(([title, code]) => {
     if (code.includes(question)) {
