@@ -6,18 +6,11 @@ const num = +input;
 let answer = null;
 
 for (let i = num; i >= 4; i--) {
-  const numSet = new Set(i.toString().split(''));
-
-  if (numSet.size === 2) {
-    if (numSet.has('4') && numSet.has('7')) {
-      answer = i;
-      break;
-    }
-  } else if (numSet.size === 1) {
-    if (numSet.has('4') || numSet.has('7')) {
-      answer = i;
-      break;
-    }
+  let num = i.toString();
+  num = num.replaceAll('4', '').replaceAll('7', '');
+  if (num === '') {
+    answer = i;
+    break;
   }
 }
 
